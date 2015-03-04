@@ -2,25 +2,29 @@ import processing.core._
 import math._
 import scala.util.Random
 
-object Test extends PApplet {
+object Main extends PApplet {
 
   def main(args: Array[String]) = {
-    val test = new Test
+    val test = new Main
     val frame = new javax.swing.JFrame("Test")
     frame.getContentPane().add(test)
 
     test.init
-    frame.pack
+    frame.setBounds(0, 0, Window.Width, Window.Height)
     frame.setVisible(true)
   }
 }
 
-class Test extends PApplet {
+object Window {
+  val Height = 720
+  val Width = 1280
+}
 
-  var angle:Int = 0 
+class Main extends PApplet {
+  var angle: Int = 0
 
   override def setup() = {
-    size(640, 360)
+    size(Window.Width, Window.Height)
     background(102)
     smooth()
     noStroke()
