@@ -1,24 +1,47 @@
 import processing.core._
+import math._
+import scala.util.Random
 
-object Main extends PApplet {
+object Test extends PApplet {
 
-  override def setup = {
-    size(200,200);
-    background(0);
+  def main(args: Array[String]) = {
+    val test = new Test
+    val frame = new javax.swing.JFrame("Test")
+    frame.getContentPane().add(test)
+
+    test.init
+    frame.pack
+    frame.setVisible(true)
+  }
+}
+
+class Test extends PApplet {
+
+  var angle:Int = 0 
+
+  override def setup() = {
+    size(640, 360)
+    background(102)
+    smooth()
+    noStroke()
+    fill(0, 102)
   }
 
-  override def draw = {
-    stroke(255);
-    if (mousePressed) {
-      line(mouseX,mouseY,pmouseX,pmouseY);
+  override def draw() = {
+    angle += 10
+    val value = cos(toRadians(angle)) * 6.0
+    for (a <- 0 to 360 by 75) {
+      val xoff = cos(toRadians(a)) * value
+      val yoff = sin(toRadians(a)) * value
+      fill(Random.nextInt(255))
+
+      ellipse(
+        (mouseX + xoff).toFloat,
+        (mouseY + yoff).toFloat,
+        value.toFloat,
+        value.toFloat)
     }
-  }
-
-  def main(args: Array[String]): Unit = {
-    println("Hello, world")
-
-    val image = new PImage(1, 1)
-
-
+    fill(255)
+    ellipse(mouseX, mouseY, 2, 2)
   }
 }
