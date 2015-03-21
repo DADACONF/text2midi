@@ -1,4 +1,4 @@
-name := "processing-scala"
+name := "text2midi"
 
 version := "1.0"
 
